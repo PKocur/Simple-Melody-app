@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Simple Melody</string>
+    <string name="record">Record</string>
+    <string name="load">Load</string>
+    <string name="your_melody">Your melody: </string>
 </resources>
