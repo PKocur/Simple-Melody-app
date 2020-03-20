@@ -5,21 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-
+//Klasa zarządza activity aplikacji
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    MenuButtons[] noteButtons;
-    MenuButtons[] menuButtons;
+    MenuButton[] noteButtons;
+    MenuButton[] menuButtons;
+    MenuButtonsManager menuButtonsManager;
     SoundManager soundManager;
+    AppGuiManager appGuiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        soundManager = new SoundManager();
-        noteButtons = new MenuButtons[6];
-        menuButtons = new MenuButtons[2];
+        noteButtons = new MenuButton[6];
+        menuButtons = new MenuButton[3];
 
         for (int x = 0; x < noteButtons.length; x++) {
             String buttonID = "button" + (x + 1);
@@ -36,32 +37,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             menuButtons[x].setButtonID(x + 6);
             menuButtons[x].setOnClickListener(this);
         }
+
+        menuButtonsManager = new MenuButtonsManager(noteButtons, menuButtons);
+        soundManager = new SoundManager(getApplicationContext());
+        appGuiManager = new AppGuiManager
+                (menuButtonsManager, soundManager, getApplicationContext());
+        soundManager.setAppGuiManager(appGuiManager);
     }
 
     public void onClick(View view) {
-        MenuButtons MenuButtons = (MenuButtons) view;
-        int buttonID = MenuButtons.getButtonID();
+        MenuButton MenuButton = (MenuButton) view;
+        int buttonID = MenuButton.getButtonID();
 
         if (buttonID < 6) {
-            soundManager.playSound(MenuButtons.getButtonID(), getApplicationContext());
-            changeNoteButtonsColors(MenuButtons);
+            soundManager.playSound(MenuButton.getButtonID());
+            appGuiManager.noteClicked(MenuButton);
+
         } else {
             switch (buttonID) {
                 case 6:
-                    boolean recording =  soundManager.recordMelody(getApplicationContext());
-                    int color = recording ? R.color.colorRedDark : R.color.colorGreen;
-                    MenuButtons.setBackgroundTintList(getResources().getColorStateList(color));
+                    soundManager.recordMelody();
                     break;
                 case 7:
-                    soundManager.loadMelody(getApplicationContext());
+                    soundManager.loadMelody(true);
+                    break;
+                case 8:
+                    soundManager.playMelody(soundManager.loadMelody(false));
+                    break;
             }
         }
-    }
-
-    public void changeNoteButtonsColors(MenuButtons MenuButtons) {
-        for (MenuButtons btn : noteButtons) {
-            btn.setBackgroundTintList(getResources().getColorStateList(R.color.colorRed));
-        }
-        MenuButtons.setBackgroundTintList(getResources().getColorStateList(R.color.colorGreen));
     }
 }
