@@ -34,12 +34,12 @@ public class SoundManager implements MediaPlayer.OnCompletionListener {
 
     private boolean recording = false;
 
-    private String recordedMelody = "";
     private byte recordingNote = 0;
     private long timeDelayTemp = 0;
-    private long[] timeDelays = new long[MAX_MELODY_SIZE];
+    private String recordedMelody = "";
+    private long[] timeDelays = new long[MAX_MELODY_SIZE_IN_CHARS / 8];
 
-    private static final int MAX_MELODY_SIZE = 150;
+    private static final int MAX_MELODY_SIZE_IN_CHARS = 500;
     private static final String SAVE_PATH = "melody.txt";
 
     void setAppGuiManager(AppGuiManager appGuiManager) {
@@ -55,7 +55,7 @@ public class SoundManager implements MediaPlayer.OnCompletionListener {
         mp.start();
         mp.setOnCompletionListener(this);
 
-        if(recording) {
+        if(recording && recordingNote < MAX_MELODY_SIZE_IN_CHARS / 8) {
             recordedMelody += (char)(65 + soundID);
             if(recordingNote == 0) {
                 timeDelayTemp = System.currentTimeMillis();
@@ -75,7 +75,8 @@ public class SoundManager implements MediaPlayer.OnCompletionListener {
     void recordMelody() {
         recording = !recording;
         if(!recording) {
-            saveMelody(recordedMelody, timeDelays);
+            Melody melodyToSave = new Melody(recordedMelody, timeDelays);
+            saveMelody(melodyToSave);
             appGuiManager.recordingStopped();
             resetRecording();
         } else {
@@ -134,7 +135,7 @@ public class SoundManager implements MediaPlayer.OnCompletionListener {
             FileInputStream fileIn = context.openFileInput(SAVE_PATH);
             InputStreamReader inputReader = new InputStreamReader(fileIn);
 
-            char[] inputBuffer = new char[MAX_MELODY_SIZE];
+            char[] inputBuffer = new char[MAX_MELODY_SIZE_IN_CHARS];
             inputReader.read(inputBuffer);
             String readString = String.copyValueOf(inputBuffer);
 
@@ -167,15 +168,15 @@ public class SoundManager implements MediaPlayer.OnCompletionListener {
         return noteMelodies;
     }
 
-    private void saveMelody(String melody, long[] timeDelays) {
+    private void saveMelody(Melody melody) {
         try {
             FileOutputStream fileOut = context.openFileOutput(SAVE_PATH,
                     context.MODE_PRIVATE);
             OutputStreamWriter outputWriter = new OutputStreamWriter(fileOut);
-            
-            for(int x = 0; x < melody.length(); x++) {
-                outputWriter.write(melody.charAt(x));
-                outputWriter.write("," + timeDelays[x] + ",");
+
+            for(int x = 0; x < melody.getMelody().length(); x++) {
+                outputWriter.write(melody.getMelody().charAt(x));
+                outputWriter.write("," + melody.getDelays()[x] + ",");
             }
 
             outputWriter.close();
