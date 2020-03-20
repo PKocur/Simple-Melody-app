@@ -2,6 +2,8 @@ package pl.pk99.simplemelody;
 
 import android.content.Context;
 
+import pl.pk99.simplemelody.model.MenuButton;
+
 //Klasa zarządza GUI (aktywuje i dezaktywuje przyciski na podstawie aktualnego
 //stanu aplikacji)
 class AppGuiManager {
@@ -21,11 +23,11 @@ class AppGuiManager {
     }
 
     void noteClicked (MenuButton noteButton) {
-        menuButtonsManager.noteButtonToGreen(noteButton, context);
+        menuButtonsManager.noteButtonToBlue(noteButton, context);
     }
 
     void recordingStart () {
-        menuButtonsManager.setColorMenuButton(0, R.color.colorRedDark);
+        menuButtonsManager.setColorMenuButton(0, R.color.colorRed);
         menuButtonsManager.setActiveMenuButtons(false, 1,2);
     }
 

@@ -1,21 +1,21 @@
-package pl.pk99.simplemelody;
+package pl.pk99.simplemelody.model;
 
 //Klasa melodii
-class Melody {
+public class Melody {
     //Sekwencja nut zapisana w tekście
     private String melody;
     //Opóźnienia w graniu danych nut
     private long[] delays;
 
-    String getMelody() {
+    public String getMelody() {
         return melody;
     }
 
-    long[] getDelays() {
+    public long[] getDelays() {
         return delays;
     }
 
-    Melody(String melody, long[] delays) {
+    public Melody(String melody, long[] delays) {
         this.melody = melody;
         this.delays = delays;
     }

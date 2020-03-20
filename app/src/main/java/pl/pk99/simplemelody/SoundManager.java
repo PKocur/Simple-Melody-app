@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import pl.pk99.simplemelody.model.Melody;
+import pl.pk99.simplemelody.model.NoteOfMelody;
+
 //Klasa zarządza dźwiękami (umożliwia granie melodii, jej zapis i odczyt)
 public class SoundManager implements MediaPlayer.OnCompletionListener {
     private int[] sounds = {
@@ -169,6 +172,7 @@ public class SoundManager implements MediaPlayer.OnCompletionListener {
             FileOutputStream fileOut = context.openFileOutput(SAVE_PATH,
                     context.MODE_PRIVATE);
             OutputStreamWriter outputWriter = new OutputStreamWriter(fileOut);
+            
             for(int x = 0; x < melody.length(); x++) {
                 outputWriter.write(melody.charAt(x));
                 outputWriter.write("," + timeDelays[x] + ",");

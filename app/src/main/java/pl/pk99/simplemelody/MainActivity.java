@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import pl.pk99.simplemelody.model.MenuButton;
+
 //Klasa zarządza activity aplikacji
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuButtons = new MenuButton[3];
 
         for (int x = 0; x < noteButtons.length; x++) {
-            String buttonID = "button" + (x + 1);
+            String buttonID = "noteButton" + (x + 1);
             int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
             noteButtons[x] = findViewById(resID);
             noteButtons[x].setButtonID(x);

@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:drawable/screen_background_dark"
+    android:backgroundTint="?attr/actionMenuTextColor"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/LinearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="300dp"
+        android:layout_marginEnd="5dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,57 +22,63 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <pl.pk99.simplemelody.MenuButton
-            android:id="@+id/button1"
+        <pl.pk99.simplemelody.model.MenuButton
+            android:id="@+id/noteButton1"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/colorRed"
             android:text="A"
+            android:textColor="@android:color/white"
             android:textSize="50sp" />
 
-        <pl.pk99.simplemelody.MenuButton
-            android:id="@+id/button2"
+        <pl.pk99.simplemelody.model.MenuButton
+            android:id="@+id/noteButton2"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/colorRed"
             android:text="B"
+            android:textColor="@android:color/white"
             android:textSize="50sp" />
 
-        <pl.pk99.simplemelody.MenuButton
-            android:id="@+id/button3"
+        <pl.pk99.simplemelody.model.MenuButton
+            android:id="@+id/noteButton3"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/colorRed"
             android:text="C"
+            android:textColor="@android:color/white"
             android:textSize="50sp" />
 
-        <pl.pk99.simplemelody.MenuButton
-            android:id="@+id/button4"
+        <pl.pk99.simplemelody.model.MenuButton
+            android:id="@+id/noteButton4"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/colorRed"
             android:text="D"
+            android:textColor="@android:color/white"
             android:textSize="50sp" />
 
-        <pl.pk99.simplemelody.MenuButton
-            android:id="@+id/button5"
+        <pl.pk99.simplemelody.model.MenuButton
+            android:id="@+id/noteButton5"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/colorRed"
             android:text="E"
+            android:textColor="@android:color/white"
             android:textSize="50sp" />
 
-        <pl.pk99.simplemelody.MenuButton
-            android:id="@+id/button6"
+        <pl.pk99.simplemelody.model.MenuButton
+            android:id="@+id/noteButton6"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/colorRed"
             android:text="F"
+            android:textColor="@android:color/white"
             android:textSize="50sp" />
     </LinearLayout>
 
@@ -76,11 +86,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginBottom="50dp"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textAllCaps="false"
+        android:textColor="@android:color/white"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/LinearLayout2"
@@ -93,7 +104,9 @@
         android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/LinearLayout2"
@@ -102,25 +115,34 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0">
 
-        <pl.pk99.simplemelody.MenuButton
+        <pl.pk99.simplemelody.model.MenuButton
             android:id="@+id/menuButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorEnabled"
-            android:text="@string/record" />
+            android:text="@string/record"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <pl.pk99.simplemelody.MenuButton
+        <pl.pk99.simplemelody.model.MenuButton
             android:id="@+id/menuButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/load" />
+            android:backgroundTint="@color/colorEnabled"
+            android:text="@string/load"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <pl.pk99.simplemelody.MenuButton
+        <pl.pk99.simplemelody.model.MenuButton
             android:id="@+id/menuButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorDisabled"
-            android:text="@string/play" />
+            android:backgroundTint="@color/colorEnabled"
+            android:text="@string/play"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

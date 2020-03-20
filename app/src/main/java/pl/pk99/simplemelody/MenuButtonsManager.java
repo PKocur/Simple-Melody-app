@@ -2,6 +2,8 @@ package pl.pk99.simplemelody;
 
 import android.content.Context;
 
+import pl.pk99.simplemelody.model.MenuButton;
+
 //Klasa umożliwia zarządzanie stanem przycisków
 class MenuButtonsManager {
     private MenuButton[] noteButtons;
@@ -28,9 +30,9 @@ class MenuButtonsManager {
         }
     }
 
-    void noteButtonToGreen(MenuButton menuButton, Context context) {
+    void noteButtonToBlue(MenuButton menuButton, Context context) {
         noteButtonsToRed(context);
-        menuButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.colorEnabled));
+        menuButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.colorAccent));
     }
 
     private void noteButtonsToRed(Context context) {
